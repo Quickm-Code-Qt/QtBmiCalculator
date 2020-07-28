@@ -17,8 +17,7 @@ float Bmi::Calculate(QString &category)
     value = mWeight / (total_inches *total_inches);
     value = value * BMI_CONVERSION_FACTOR;
 
-    SetBmiCategory(value);
-    category = mBmiCategory;
+    category = GetBmiCategory(value);
 
     return value;
 }
@@ -38,7 +37,7 @@ void Bmi::SetWeight(float weight)
     mWeight = weight;
 }
 
-void Bmi::SetBmiCategory(const float bmiValue)
+QString Bmi::GetBmiCategory(const float bmiValue)
 {
     QString     category = "None";
 
@@ -76,7 +75,7 @@ void Bmi::SetBmiCategory(const float bmiValue)
         category = "invalid bmi value: " + QString::number(static_cast<double>(bmiValue));
     }
 
-    mBmiCategory = category;
+    return category;
 }
 
 
@@ -94,7 +93,8 @@ bool Bmi::WithinRange(float top, float bottom, float value)
 
     if (!success)
     {
-        success = ((value < top) && (value > bottom));
+        success = (((value < top)    && !qFuzzyCompare(value, top)) &&
+                   ((value > bottom) && !qFuzzyCompare(value, bottom)));
     }
 
 

@@ -18,7 +18,7 @@ public:
     void    SetWeight(float weight);
 
 protected:
-    void    SetBmiCategory(const float bmiValue);
+    QString GetBmiCategory(const float bmiValue);
     int     CompareNumbers(float a, float b);
     bool    WithinRange(float top, float bottom, float value);
 
@@ -28,8 +28,6 @@ private:
     float   mWeight;
 
     float   mBmi;
-
-    QString mBmiCategory;
 };
 
 #endif // BMI_H
