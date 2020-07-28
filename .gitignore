@@ -30,3 +30,5 @@
 *.exe
 *.out
 *.app
+
+build-QtBmiCalculator-Desktop_x86_windows_msvc2017_pe_32bit-Debug/*
