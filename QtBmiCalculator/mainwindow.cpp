@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QIntValidator>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -36,6 +37,15 @@ void MainWindow::on_btn_Calculate_clicked()
     double      value = 0.0;
     QString     category;
 
+    if (!mCalculator->ValidateData())
+    {
+        QMessageBox  box;
+
+        QString msg = "BMI data values not set";
+        box.setText(msg);
+        box.exec();
+    }
+
     // calculate BMI
     value               = static_cast<double>(mCalculator->Calculate(category));
     QString strValue    = QString::number(value,'f',1);
@@ -53,12 +63,6 @@ void MainWindow::on_spbx_HeightFeet_valueChanged(int arg1)
 void MainWindow::on_spbx_HeightInch_valueChanged(int arg1)
 {
     mCalculator->SetHeightInch(arg1);
-}
-
-void MainWindow::on_doubleSpinBox_valueChanged(double arg1)
-{
-    float value = static_cast<float>(arg1);
-    mCalculator->SetWeight(value);
 }
 
 void MainWindow::on_spbx_Weight_valueChanged(double arg1)

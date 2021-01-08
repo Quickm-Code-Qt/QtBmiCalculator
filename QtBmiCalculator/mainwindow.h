@@ -22,12 +22,10 @@ private slots:
 
     void on_spbx_HeightFeet_valueChanged(int arg1);
     void on_spbx_HeightInch_valueChanged(int arg1);
-    void on_doubleSpinBox_valueChanged(double arg1);
-
     void on_spbx_Weight_valueChanged(double arg1);
 
 private:
     Ui::MainWindow *ui;
-    Bmi * mCalculator;
+    Bmi *           mCalculator;
 };
 #endif // MAINWINDOW_H
