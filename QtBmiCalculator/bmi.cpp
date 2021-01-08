@@ -12,6 +12,11 @@ float Bmi::Calculate(QString &category)
 {
     float value = 0.0;
 
+    if (mHeight_Feet == 0 && mHeight_Inch)
+    {
+
+    }
+
     int total_inches = mHeight_Feet*12 + mHeight_Inch;
 
     value = mWeight / (total_inches *total_inches);

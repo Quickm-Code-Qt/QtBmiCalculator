@@ -9,8 +9,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // line edit validators
     mCalculator = new Bmi();
+
+    // Set calculator class with ui default values
+    mCalculator->SetHeightFeet(ui->spbx_HeightFeet->value());
+    mCalculator->SetHeightInch(ui->spbx_HeightInch->value());
+
+    float weight = static_cast<float>(ui->spbx_Weight->value());
+    mCalculator->SetWeight(weight);
 }
 
 MainWindow::~MainWindow()
@@ -50,6 +56,12 @@ void MainWindow::on_spbx_HeightInch_valueChanged(int arg1)
 }
 
 void MainWindow::on_doubleSpinBox_valueChanged(double arg1)
+{
+    float value = static_cast<float>(arg1);
+    mCalculator->SetWeight(value);
+}
+
+void MainWindow::on_spbx_Weight_valueChanged(double arg1)
 {
     float value = static_cast<float>(arg1);
     mCalculator->SetWeight(value);
